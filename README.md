@@ -1,14 +1,23 @@
-# doublebacktoclose
+# double_back_to_close
 
 Flutter package for request double back pressed before close app/route/screen.
 
-## Getting Started
+## Usage
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+Wrapping widget with DoubleBack where you want to use double back to close screen or app:
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```dart
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: DoubleBack(
+          message:"Press back again to close",
+          child: Home(),
+        ),
+      ),
+    );
+  }
+}
+``` 

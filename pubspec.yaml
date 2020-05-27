@@ -1,8 +1,7 @@
-name: doublebacktoclose
-description: Flutter package for request double back pressed before close app/route/screen.
-version: 0.0.1
-author:
-homepage:
+name: double_back_to_close
+description: Flutter package for request double back pressed before close app/route/screen. Wrap any widget with it to use.
+version: 1.0.0
+homepage: https://github.com/fuadarradhi/double_back_to_close
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

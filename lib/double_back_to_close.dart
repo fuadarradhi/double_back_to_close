@@ -3,11 +3,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 
+/// DoubleBack, wrap a widget to use it
+/// child : widget
+/// message : to show on toast
+/// waitToSecondPressed (optional) if you want to wait longer
 class DoubleBack extends StatefulWidget {
   final Widget child;
   final String message;
   final int waitToSecondPressed;
 
+  /// DoubleBack, wrap a widget to use it
   const DoubleBack({
     Key key,
     @required this.child,
@@ -42,7 +47,7 @@ class _DoubleBackState extends State<DoubleBack> {
             Toast.show(
               widget.message,
               context,
-              duration: 2,
+              duration: widget.waitToSecondPressed,
               gravity: Toast.BOTTOM,
             );
 
