@@ -6,3 +6,7 @@
 
 * Add custom callback
 * Example
+
+## [1.0.1+fix] - Release First
+
+* fix typo
