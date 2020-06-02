@@ -31,14 +31,14 @@ class MyApp extends StatelessWidget {
       home: DoubleBack(
         message: "Press back again to exit",
         child: MyHomePage(title: "Example"),
-        onFirstBackPressed: (context) {
+        onFirstBackPress: (context) {
           Flushbar(
             title: "Hey User",
             message: "Press back again to exit",
             duration: Duration(seconds: 3),
           )..show(context);
         },
-        waitToSecondPressed: 3,
+        waitForSecondBackPress: 3,
       ),
     );
   }

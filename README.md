@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DoubleBack(
-        onFirstBackPressed: (context) {
+        onFirstBackPress: (context) {
 
           // you can use your custom here
           Flushbar(
@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DoubleBack(
-          onFirstBackPressed: (context) {
+          onFirstBackPress: (context) {
 
             Flushbar(
               title: "Hey User",
@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
 
           },
           child: Home(),
-          waitToSecondPressed: 15, // wait for 15 second for second back pressed
+          waitForSecondBackPress: 15, // wait for 15 second for second back pressed
         ),
     );
   }

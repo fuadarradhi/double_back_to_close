@@ -10,8 +10,8 @@ import 'package:toast/toast.dart';
 class DoubleBack extends StatefulWidget {
   final Widget child;
   final String message;
-  final int waitToSecondPressed;
-  final Function onFirstBackPressed;
+  final int waitForSecondBackPress;
+  final Function onFirstBackPress;
   final int type;
 
   /// DoubleBack, wrap a widget to use it
@@ -19,8 +19,8 @@ class DoubleBack extends StatefulWidget {
     Key key,
     @required this.child,
     this.message = "Press back again to exit",
-    this.waitToSecondPressed = 2,
-    this.onFirstBackPressed,
+    this.waitForSecondBackPress = 2,
+    this.onFirstBackPress,
     this.type,
   }) : super(key: key);
 
@@ -43,18 +43,18 @@ class _DoubleBackState extends State<DoubleBack> {
             tapped = true;
             Timer(
               Duration(
-                seconds: widget.waitToSecondPressed,
+                seconds: widget.waitForSecondBackPress,
               ),
               resetBackTimeout,
             );
 
-            if (widget.onFirstBackPressed != null) {
-              widget.onFirstBackPressed(context);
+            if (widget.onFirstBackPress != null) {
+              widget.onFirstBackPress(context);
             } else {
               Toast.show(
                 widget.message,
                 context,
-                duration: widget.waitToSecondPressed,
+                duration: widget.waitForSecondBackPress,
                 gravity: Toast.BOTTOM,
               );
             }
