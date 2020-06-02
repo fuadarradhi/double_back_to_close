@@ -2,6 +2,8 @@
 
 Flutter package for request double back pressed before close app/route/screen.
 
+![Demo](double_back.gif)
+
 ## Usage
 
 Wrapping widget with DoubleBack where you want to use double back to close screen or app:
