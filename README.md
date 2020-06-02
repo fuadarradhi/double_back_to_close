@@ -14,8 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: DoubleBack(
+      home: DoubleBack(
           message:"Press back again to close",
           child: Home(),
         ),
@@ -35,20 +34,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: DoubleBack(
-          onFirstBackPressed: (context) {
+      home: DoubleBack(
+        onFirstBackPressed: (context) {
 
-            // you can use your custom here
-            Flushbar(
-              title: "Hey User",
-              message: "Press back again to exit",
-              duration: Duration(seconds: 2),
-            )..show(context);
+          // you can use your custom here
+          Flushbar(
+            title: "Hey User",
+            message: "Press back again to exit",
+            duration: Duration(seconds: 2),
+          )..show(context);
 
-          },
-          child: Home(),
-        ),
+        },
+
+        child: Home(),
       ),
     );
   }
@@ -61,8 +59,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: DoubleBack(
+      home: DoubleBack(
           onFirstBackPressed: (context) {
 
             Flushbar(
@@ -75,7 +72,6 @@ class MyApp extends StatelessWidget {
           child: Home(),
           waitToSecondPressed: 15, // wait for 15 second for second back pressed
         ),
-      ),
     );
   }
 }
