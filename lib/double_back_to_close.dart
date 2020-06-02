@@ -11,13 +11,17 @@ class DoubleBack extends StatefulWidget {
   final Widget child;
   final String message;
   final int waitToSecondPressed;
+  final Function onFirstBackPressed;
+  final int type;
 
   /// DoubleBack, wrap a widget to use it
   const DoubleBack({
     Key key,
     @required this.child,
-    @required this.message,
+    this.message = "Press back again to exit",
     this.waitToSecondPressed = 2,
+    this.onFirstBackPressed,
+    this.type,
   }) : super(key: key);
 
   @override
@@ -44,12 +48,16 @@ class _DoubleBackState extends State<DoubleBack> {
               resetBackTimeout,
             );
 
-            Toast.show(
-              widget.message,
-              context,
-              duration: widget.waitToSecondPressed,
-              gravity: Toast.BOTTOM,
-            );
+            if (widget.onFirstBackPressed != null) {
+              widget.onFirstBackPressed(context);
+            } else {
+              Toast.show(
+                widget.message,
+                context,
+                duration: widget.waitToSecondPressed,
+                gravity: Toast.BOTTOM,
+              );
+            }
 
             return false;
           }
