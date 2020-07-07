@@ -76,3 +76,25 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+
+### with custom condition
+if you want to show message at spesific condition, for example, only show message if pageView at index 0.
+
+```dart
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DoubleBack(
+          condition: tabIndex == 0, // only show message when tabIndex=0
+          onConditionFail: (){
+            setState((){
+                tabIndex = 0; // if not 0, set pageview jumptopage 0
+            });
+          }
+          child: Home(),
+        ),
+    );
+  }
+}
+```

@@ -7,12 +7,14 @@ import 'package:toast/toast.dart';
 /// child : widget
 /// message : to show on toast
 /// waitToSecondPressed (optional) if you want to wait longer
+/// condition and conditionFail, if you want show at spesific condition
 class DoubleBack extends StatefulWidget {
   final Widget child;
   final String message;
   final int waitForSecondBackPress;
   final Function onFirstBackPress;
-  final int type;
+  final bool condition;
+  final VoidCallback onConditionFail;
 
   /// DoubleBack, wrap a widget to use it
   const DoubleBack({
@@ -21,7 +23,8 @@ class DoubleBack extends StatefulWidget {
     this.message = "Press back again to exit",
     this.waitForSecondBackPress = 2,
     this.onFirstBackPress,
-    this.type,
+    this.condition = true,
+    this.onConditionFail,
   }) : super(key: key);
 
   @override
@@ -37,28 +40,35 @@ class _DoubleBackState extends State<DoubleBack> {
     if (_isAndroid) {
       return WillPopScope(
         onWillPop: () async {
-          if (tapped) {
-            return true;
-          } else {
-            tapped = true;
-            Timer(
-              Duration(
-                seconds: widget.waitForSecondBackPress,
-              ),
-              resetBackTimeout,
-            );
-
-            if (widget.onFirstBackPress != null) {
-              widget.onFirstBackPress(context);
+          if (widget.condition) {
+            if (tapped) {
+              return true;
             } else {
-              Toast.show(
-                widget.message,
-                context,
-                duration: widget.waitForSecondBackPress,
-                gravity: Toast.BOTTOM,
+              tapped = true;
+              Timer(
+                Duration(
+                  seconds: widget.waitForSecondBackPress,
+                ),
+                resetBackTimeout,
               );
-            }
 
+              if (widget.onFirstBackPress != null) {
+                widget.onFirstBackPress(context);
+              } else {
+                Toast.show(
+                  widget.message,
+                  context,
+                  duration: widget.waitForSecondBackPress,
+                  gravity: Toast.BOTTOM,
+                );
+              }
+
+              return false;
+            }
+          } else {
+            if (widget.onConditionFail != null) {
+              widget.onConditionFail();
+            }
             return false;
           }
         },

@@ -10,3 +10,7 @@
 ## [1.0.1+fix] - Custom Callback fix typo
 
 * fix typo
+
+## [1.0.2] - Condition
+
+* add condition and onConditionFail for spesific show message
