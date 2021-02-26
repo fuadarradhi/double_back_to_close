@@ -2,7 +2,7 @@
 
 Flutter package for request double back pressed before close app/route/screen.
 
-![Demo](double_back.gif)
+![Demo](double_back2.gif)
 
 ## Usage
 
