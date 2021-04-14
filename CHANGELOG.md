@@ -14,3 +14,13 @@
 ## [1.0.2] - Condition
 
 * add condition and onConditionFail for spesific show message
+
+## [1.0.2+mit]- Change License to MIT
+
+* Change License
+
+
+## [2.0.0] - Null Safety
+
+* Null safety
+* Style

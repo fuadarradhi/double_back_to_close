@@ -19,15 +19,37 @@ class MyApp extends StatelessWidget {
           child: Home(),
         ),
       ),
+  }
+}
+```
+
+
+### Default (using TOAST) with optional style
+```dart
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DoubleBack(
+          message:"Press back again to close",
+          child: Home(),
+        ),
+      ),
+      // optional style
+      textStyle: TextStyle(
+        fontSize: 13,
+        color: Colors.white,
+      ),
+      background: Colors.red,
+      backgroundRadius: 30,
     );
   }
 }
 ```
 
 
-### Custom ( using flushbar for example)
+### Custom ( using snackbar for example)
 ```dart
-import 'package:flushbar/flushbar.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -38,11 +60,10 @@ class MyApp extends StatelessWidget {
         onFirstBackPress: (context) {
 
           // you can use your custom here
-          Flushbar(
-            title: "Hey User",
-            message: "Press back again to exit",
-            duration: Duration(seconds: 2),
-          )..show(context);
+          // change this with your custom action
+          final snackBar = SnackBar(content: Text('Press back again to exit'));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          // ---
 
         },
 
@@ -85,6 +106,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // Imagine that you are using materialbottom and only want to close when tabIndex = 0
+
       home: DoubleBack(
           condition: tabIndex == 0, // only show message when tabIndex=0
           onConditionFail: (){

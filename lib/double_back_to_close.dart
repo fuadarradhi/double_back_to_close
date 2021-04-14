@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
+import 'toast.dart';
 
 /// DoubleBack, wrap a widget to use it
 /// child : widget
@@ -12,19 +12,25 @@ class DoubleBack extends StatefulWidget {
   final Widget child;
   final String message;
   final int waitForSecondBackPress;
-  final Function onFirstBackPress;
+  final Function? onFirstBackPress;
   final bool condition;
-  final VoidCallback onConditionFail;
+  final VoidCallback? onConditionFail;
+  final TextStyle textStyle;
+  final Color background;
+  final double backgroundRadius;
 
   /// DoubleBack, wrap a widget to use it
   const DoubleBack({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.message = "Press back again to exit",
     this.waitForSecondBackPress = 2,
     this.onFirstBackPress,
     this.condition = true,
     this.onConditionFail,
+    this.textStyle = const TextStyle(fontSize: 14, color: Colors.white),
+    this.background = const Color(0xAA000000),
+    this.backgroundRadius = 20,
   }) : super(key: key);
 
   @override
@@ -53,13 +59,16 @@ class _DoubleBackState extends State<DoubleBack> {
               );
 
               if (widget.onFirstBackPress != null) {
-                widget.onFirstBackPress(context);
+                widget.onFirstBackPress!(context);
               } else {
                 Toast.show(
                   widget.message,
                   context,
                   duration: widget.waitForSecondBackPress,
-                  gravity: Toast.BOTTOM,
+                  gravity: Toast.bottom,
+                  textStyle: widget.textStyle,
+                  backgroundColor: widget.background,
+                  backgroundRadius: widget.backgroundRadius,
                 );
               }
 
@@ -67,7 +76,7 @@ class _DoubleBackState extends State<DoubleBack> {
             }
           } else {
             if (widget.onConditionFail != null) {
-              widget.onConditionFail();
+              widget.onConditionFail!();
             }
             return false;
           }

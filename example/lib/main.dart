@@ -1,4 +1,3 @@
-import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:double_back_to_close/double_back_to_close.dart';
 
@@ -29,24 +28,29 @@ class _MyAppState extends State<MyApp> {
             allowClose = true;
           });
         },
-        message: "Press back again to exit",
+        // message: "Press back again to exit",
         child: MyHomePage(title: "Example"),
-        onFirstBackPress: (context) {
-          Flushbar(
-            title: "Hey User",
-            message: "Press back again to exit",
-            duration: Duration(seconds: 3),
-          )..show(context);
-        },
-        waitForSecondBackPress: 3,
+        // onFirstBackPress: (context) {
+        //   // change this with your custom action
+        //   final snackBar = SnackBar(content: Text('Press back again to exit'));
+        //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        //   // ---
+        // },
+        waitForSecondBackPress: 3, // default 2
+        textStyle: TextStyle(
+          fontSize: 13,
+          color: Colors.white,
+        ),
+        background: Colors.red,
+        backgroundRadius: 30,
       ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  MyHomePage({Key? key, this.title}) : super(key: key);
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -65,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title!),
       ),
       body: Center(
         child: Column(
